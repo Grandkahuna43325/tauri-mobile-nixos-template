@@ -24,19 +24,6 @@
           config.allowUnfree = true;
           system = "${system}";
         };
-        # naersk-lib = naersk.lib."${system}";
-        # elm-stuff = makeElmPkg { inherit pkgs; };
-        # rust-stuff = naersk-lib.buildPackage {
-        #     pname = pname;
-        #     root = ./.;
-        #     buildInputs = with pkgs; [
-        #       cargo
-        #       rustc
-        #       sqlite
-        #       pkgconfig
-        #       openssl.dev
-        #       ];
-        #   };
 
         my-tauri = mytauri { inherit pkgs; };
         my-cargo-mobile = mycargomobile { inherit pkgs; };
@@ -62,32 +49,6 @@
       in
       rec {
         inherit pname;
-        # `nix build`
-        # packages.${pname} = pkgs.stdenv.mkDerivation {
-        #   nativeBuildInputs = [ pkgs.makeWrapper ];
-        #   name = pname;
-        #   src = ./.;
-        #   # building the 'out' folder
-        #   installPhase = ''
-        #     mkdir -p $out/share/zknotes/static
-        #     mkdir $out/bin
-        #     cp -r $src/server/static $out/share/zknotes
-        #     cp ${elm-stuff}/main.js $out/share/zknotes/static
-        #     cp -r ${rust-stuff}/bin $out
-        #     mv $out/bin/zknotes-server $out/bin/.zknotes-server
-        #     makeWrapper $out/bin/.zknotes-server $out/bin/zknotes-server --set ZKNOTES_STATIC_PATH $out/share/zknotes/static;
-        #     '';
-        # };
-        # defaultPackage = packages.${pname};
-
-        # `nix run`
-        # apps.${pname} = flake-utils.lib.mkApp {
-        #   drv = packages.${pname};
-        # };
-        # defaultApp = apps.${pname};
-
-        # meh = pkgs.androidenv.androidPkgs_9_0 // { android_sdk.accept_license = true; };
-        # androidComposition = pkgs.androidenv.androidPkgs_9_0 // { includeNDK = true; };
 
         androidEnv = pkgs.androidenv.override { licenseAccepted = true; };
         androidComposition = androidEnv.composeAndroidPackages {
