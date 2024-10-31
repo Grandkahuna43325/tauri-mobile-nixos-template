@@ -3,22 +3,29 @@
 ## Setup
 type `nix develop`
 
-after installation run `android-studio` and connect your phone(you need to enable USB debugging).
+after installation run `android-studio` and connect your phone(you need to enable USB debugging). probably optional*
 
 DON'T INSTALL ANYTHING THROUGH android-studio INSTALL IT WITH flake.nix in androidComposition!!
 
 you can find the list of aviable oppions [here](https://ryantm.github.io/nixpkgs/languages-frameworks/android/)
 
-init project with `npm run tauri android init`
+init project with `sh <(curl https://create.tauri.app/sh)`
+
+cd into your project `cd ProjectName`
+
+install dependencies with `npm i`
+
+run `npm run tauri android init` to init project for android
 
 run your project in dev mode with `npm run tauri android dev`
 
-before building follow instructions in ./docs/sign_app.md 
+before building follow instructions in ./docs/sign_app.md !!
 
-and run `npm run tauri android build`
+and run `npm run tauri android build`(it takes a while...)
 
 done!!
 
+ps: you can use adb to install apk on your phone :)
 
 
 
